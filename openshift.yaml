@@ -1,0 +1,58 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dev-aelm-workshop-23-app
+  labels:
+    app: dev-aelm-workshop-23-app
+spec:
+  ## TODO: Update to x amount of replica's --> Need high availability
+  replicas: 0
+  selector:
+    matchLabels:
+      app: dev-aelm-workshop-23-app
+  template:
+    metadata:
+      labels:
+        app: dev-aelm-workshop-23-app
+    spec:
+      containers:
+      - name: workshop
+        image: >-
+          <<TODO>>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dev-aelm-workshop-23-app
+  labels:
+    app: dev-aelm-workshop-23-app
+spec:
+  ports:
+  - name: 3000-tcp
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+  selector:
+    app: dev-aelm-workshop-23-app
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: dev-aelm-workshop-23-app
+  labels:
+    app: dev-aelm-workshop-23-app
+spec:
+  to:
+    kind: Service
+    name: dev-aelm-workshop-23-app
+    weight: 100
+  port:
+    targetPort: 3000-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
