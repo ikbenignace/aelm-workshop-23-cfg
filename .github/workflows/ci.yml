@@ -20,9 +20,9 @@ jobs:
     - name: Login OpenShift
       uses: redhat-actions/oc-login@v1
       with:
-        openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
         openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-        namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+        namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
     - name: Apply Openshift YAML
       run: |
         kubectl apply -f openshift.yaml -n ignace-mella-a-dev
