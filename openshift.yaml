@@ -17,7 +17,7 @@ spec:
       containers:
       - name: workshop
         image: >-
-          docker pull ghcr.io/ikbenignace/aelm-workshop-23:main
+          ghcr.io/ikbenignace/aelm-workshop-23:main
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
