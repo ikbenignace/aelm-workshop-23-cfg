@@ -5,7 +5,8 @@ metadata:
   labels:
     app: dev-aelm-workshop-23-app
 spec:
-  replicas: 2
+  ## TODO: Update to x amount of replica's --> Need high availability
+  replicas: 0
   selector:
     matchLabels:
       app: dev-aelm-workshop-23-app
@@ -17,7 +18,7 @@ spec:
       containers:
       - name: workshop
         image: >-
-          docker.io/tourna/aelm-workshop-23:main
+          <<TODO>>
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
